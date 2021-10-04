@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{79F96C0B-D0A8-41E9-83A3-626B71C8F0DB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{9BB85187-CA97-4C9D-B17E-5F9FA7EEBBFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlimDock", "src\SlimDock\SlimDock.csproj", "{DFA6119F-0FA9-4F87-8AB0-BD85864E359F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox", "samples\Sandbox\Sandbox.csproj", "{B6D829E9-C990-4A4F-BE70-89B96CE12AE2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{1FE5D9A8-EA26-4D7A-AFDC-1DD1EF6A1D6B}"
+ProjectSection(SolutionItems) = preProject
+	Directory.Build.props = Directory.Build.props
+EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DFA6119F-0FA9-4F87-8AB0-BD85864E359F} = {79F96C0B-D0A8-41E9-83A3-626B71C8F0DB}
+		{B6D829E9-C990-4A4F-BE70-89B96CE12AE2} = {9BB85187-CA97-4C9D-B17E-5F9FA7EEBBFD}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DFA6119F-0FA9-4F87-8AB0-BD85864E359F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFA6119F-0FA9-4F87-8AB0-BD85864E359F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFA6119F-0FA9-4F87-8AB0-BD85864E359F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFA6119F-0FA9-4F87-8AB0-BD85864E359F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6D829E9-C990-4A4F-BE70-89B96CE12AE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6D829E9-C990-4A4F-BE70-89B96CE12AE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6D829E9-C990-4A4F-BE70-89B96CE12AE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6D829E9-C990-4A4F-BE70-89B96CE12AE2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

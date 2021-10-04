@@ -1,0 +1,163 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:slimDock="clr-namespace:SlimDock"
+        xmlns:controls="clr-namespace:SlimDock.Controls"
+        xmlns:themes="clr-namespace:SlimDock.Themes"
+        xmlns:system="clr-namespace:System;assembly=netstandard"
+        x:CompileBindings="True">
+
+  <Design.PreviewWith>
+    <ContentControl
+      Width="600"
+      Height="600"
+      Content="{x:Static themes:ThemeDesignData.DesignInstance}" />
+  </Design.PreviewWith>
+
+  <!-- ReSharper disable InconsistentNaming -->
+  <Style Selector="slimDock|DockControl">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <DockPanel>
+          <controls:DockLayoutControl x:Name="PART_DockLayout" />
+        </DockPanel>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <Style Selector="controls|DockSplitterControl > Thumb, controls|DockSideControl > Thumb">
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="MinWidth" Value="4" />
+    <Setter Property="MinHeight" Value="4" />
+    <Setter Property="Background" Value="{DynamicResource SystemControlBackgroundBaseLowBrush}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border
+          BorderBrush="{TemplateBinding BorderBrush}"
+          BorderThickness="{TemplateBinding BorderThickness}"
+          CornerRadius="{TemplateBinding CornerRadius}"
+          Background="{TemplateBinding Background}" />
+      </ControlTemplate>
+    </Setter>
+  </Style>
+  <Style Selector="controls|DockSplitterControl:horizontal > Thumb, controls|DockSideControl:horizontal > Thumb">
+    <Setter Property="Cursor" Value="SizeWestEast" />
+  </Style>
+  <Style Selector="controls|DockSplitterControl:vertical > Thumb, controls|DockSideControl:vertical > Thumb">
+    <Setter Property="Cursor" Value="SizeNorthSouth" />
+  </Style>
+  
+  <Style Selector="controls|DockTabsControl:vertical /template/ ListBox#PART_FirstSlotTabs">
+    <Setter Property="(DockPanel.Dock)" Value="Left"/>
+  </Style>
+  <Style Selector="controls|DockTabsControl:vertical /template/ ListBox#PART_LastSlotTabs">
+    <Setter Property="(DockPanel.Dock)" Value="Right"/>
+  </Style>
+  <Style Selector="controls|DockTabsControl:horizontal /template/ ListBox#PART_FirstSlotTabs">
+    <Setter Property="(DockPanel.Dock)" Value="Top"/>
+  </Style>
+  <Style Selector="controls|DockTabsControl:horizontal /template/ ListBox#PART_LastSlotTabs">
+    <Setter Property="(DockPanel.Dock)" Value="Bottom"/>
+  </Style>
+  
+  <Style Selector="controls|DockPanePresenter">
+    <Setter Property="Template">
+      <ControlTemplate TargetType="controls:DockPanePresenter">
+        <controls:DockPanelDebug DataContext="{TemplateBinding Pane}">
+          <DockPanel x:DataType="slimDock:DockPane">
+            <DockPanel DockPanel.Dock="Top" Background="{DynamicResource SystemControlHighlightListMediumBrush}">
+              <Button DockPanel.Dock="Right" x:Name="PART_Close">—</Button>
+              <ContentControl VerticalAlignment="Center"  x:Name="PART_Header"
+                ContentTemplate="{Binding HeaderContentTemplate}"
+                Content="{Binding HeaderContent}"
+              />
+            </DockPanel>
+            <Border DockPanel.Dock="Top" Height="2" Background="{DynamicResource SystemAccentColorLight1}"/>
+            <ContentControl
+              x:Name="PART_Content"
+              ContentTemplate="{Binding ContentTemplate}"
+              Content="{Binding Content}"
+            />
+          </DockPanel>
+
+        </controls:DockPanelDebug>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+  
+  <Style Selector="controls|DockTabsControl">
+    <Setter Property="Template">
+      <ControlTemplate TargetType="controls:DockTabsControl" x:DataType="system:Object">
+        <Border x:Name="PART_TabsContainer">
+          <DockPanel Background="Red" LastChildFill="False">
+            <ListBox
+              x:Name="PART_FirstSlotTabs"
+              SelectedItem="{Binding $parent[controls:DockTabsControl].FirstSlot.SelectedPane}"
+              Items="{Binding $parent[controls:DockTabsControl].FirstSlot.Panes}">
+            </ListBox>
+            <ListBox
+                     x:Name="PART_LastSlotTabs"
+                     SelectedItem="{Binding $parent[controls:DockTabsControl].LastSlot.SelectedPane}"
+                     Items="{Binding $parent[controls:DockTabsControl].LastSlot.Panes}">
+            </ListBox>
+          </DockPanel>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+  
+  <Style Selector="controls|DockTabsControl:vertical /template/ ListBox">
+    <Setter Property="ItemsPanel">
+      <ItemsPanelTemplate>
+        <StackPanel Orientation="Horizontal" />
+      </ItemsPanelTemplate>
+    </Setter>
+  </Style>
+  
+  <Style Selector="controls|DockTabsControl:horizontal /template/ ListBox > ListBoxItem">
+    <Setter Property="Template">
+      <ControlTemplate x:DataType="system:Object">
+        <controls:DockSideRotateControl 
+          Dock="{Binding $parent[controls:DockTabsControl].Dock}">
+        <ContentPresenter Name="PART_ContentPresenter"
+                          Background="{TemplateBinding Background}"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{TemplateBinding BorderThickness}"
+                          CornerRadius="{TemplateBinding CornerRadius}"
+                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                          Content="{TemplateBinding Content}"
+                          Padding="{TemplateBinding Padding}"
+                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+        </controls:DockSideRotateControl>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+  <Style Selector="controls|DockTabsControl /template/ ListBox > ListBoxItem">
+    <Setter Property="Padding" Value="6"></Setter>
+  </Style>
+  <Style Selector="controls|DockTabsControl /template/ ListBox" >
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Name="border" BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}">
+          <ItemsPresenter Name="PART_ItemsPresenter"
+                          Items="{TemplateBinding Items}"
+                          ItemsPanel="{TemplateBinding ItemsPanel}"
+                          ItemTemplate="{TemplateBinding ItemTemplate}"
+                          Margin="{TemplateBinding Padding}"
+                          VirtualizationMode="{TemplateBinding VirtualizationMode}" />
+        </Border>
+      </ControlTemplate>
+    </Setter>
+    <Setter Property="ItemTemplate">
+      <DataTemplate DataType="slimDock:DockPane">
+        <ContentControl
+          ContentTemplate="{Binding PaneTabHeaderContentTemplate}"
+          Content="{Binding PaneTabHeaderContent}"
+          />
+      </DataTemplate>
+    </Setter>
+  </Style>
+
+</Styles>

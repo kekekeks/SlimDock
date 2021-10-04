@@ -1,0 +1,54 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:SlimDock.Controls;assembly=SlimDock"
+        xmlns:themes="clr-namespace:SlimDock.Themes;assembly=SlimDock"
+        xmlns:slimDock="clr-namespace:SlimDock;assembly=SlimDock"
+        xmlns:sandbox="clr-namespace:Sandbox"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Sandbox.MainWindow"
+        x:CompileBindings="True"
+        Title="Sandbox">
+    <Window.Styles>
+      <StyleInclude Source="avares://SlimDock/Themes/Base.axaml"/>
+    </Window.Styles>
+  <!--<ContentControl Content="{x:Static themes:ThemeDesignData.DesignInstance}"></ContentControl>-->
+    <slimDock:DockControl Panes="{x:Static sandbox:MyPaneModel.DesignItems}">
+      <slimDock:DockControl.PaneTemplate>
+        <slimDock:DockPaneTemplate >
+          <slimDock:DockPane x:DataType="sandbox:MyPaneModel"
+                             Content="{Binding Content }"
+                             HeaderContent="{Binding Header}"
+                             PaneTabHeaderContent="{Binding Tab}"
+                             InitialLayoutSlot="{Binding Slot}">
+            <slimDock:DockPane.ContentTemplate>
+              <DataTemplate DataType="x:Object">
+                <DockPanel>
+                  <TextBlock DockPanel.Dock="Top" Text="Custom content template"/>
+                  <ContentControl Content="{Binding .}"/>
+                </DockPanel>
+              </DataTemplate>
+            </slimDock:DockPane.ContentTemplate>
+            <slimDock:DockPane.HeaderContentTemplate>
+              <DataTemplate DataType="x:Object">
+                <DockPanel>
+                  <TextBlock DockPanel.Dock="Top" Text="Custom content template"/>
+                  <ContentControl Content="{Binding .}"/>
+                </DockPanel>
+              </DataTemplate>
+            </slimDock:DockPane.HeaderContentTemplate>
+            <slimDock:DockPane.PaneTabHeaderContentTemplate>
+              <DataTemplate DataType="x:Object">
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock Text="!"/>
+                  <ContentControl Content="{Binding .}"/>
+                </StackPanel>
+              </DataTemplate>
+            </slimDock:DockPane.PaneTabHeaderContentTemplate>
+            
+          </slimDock:DockPane>
+        </slimDock:DockPaneTemplate>
+      </slimDock:DockControl.PaneTemplate>
+    </slimDock:DockControl>
+</Window>
